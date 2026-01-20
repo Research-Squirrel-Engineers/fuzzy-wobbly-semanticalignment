@@ -1,0 +1,229 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix skosplus: <https://w3id.org/skos-plus/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+skos:closeMatch a owl:ObjectProperty ;
+    rdfs:label "SKOS closeMatch (7-star level 6)"@en ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skosplus:perceptions_highly_likely ;
+    skosplus:degreeOfConnection 0.9380796757830466 ;
+    skosplus:starLevel 6 .
+
+skos:exactMatch a owl:ObjectProperty ;
+    rdfs:label "SKOS exactMatch (7-star level 7)"@en ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skosplus:perceptions_almost_certainly ;
+    skosplus:degreeOfConnection 1.0 ;
+    skosplus:starLevel 7 .
+
+skosplus:degreeOfConnection a owl:AnnotationProperty ;
+    rdfs:label "degree of connection (0–1)"@en ;
+    rdfs:comment "Numeric degree of connection for 7-star mapping relations; computed via a normalised saturating exponential function."@en .
+
+skosplus:medianPerceivedProbability a owl:AnnotationProperty ;
+    rdfs:label "median perceived probability"@en ;
+    rdfs:comment "Median perceived probability for a perceptions phrase (derived from zonination/perceptions)."@en .
+
+skosplus:perceptions_almost_no_chance a owl:ObjectProperty ;
+    rdfs:label "Almost No Chance"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skosplus:perceptionBand ;
+    skosplus:medianPerceivedProbability 0.02 .
+
+skosplus:perceptions_chances_are_slight a owl:ObjectProperty ;
+    rdfs:label "Chances Are Slight"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skosplus:perceptionBand ;
+    skosplus:medianPerceivedProbability 0.1 .
+
+skosplus:perceptions_highly_unlikely a owl:ObjectProperty ;
+    rdfs:label "Highly Unlikely"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skosplus:perceptionBand ;
+    skosplus:medianPerceivedProbability 0.05 .
+
+skosplus:perceptions_improbable a owl:ObjectProperty ;
+    rdfs:label "Improbable"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skosplus:perceptionBand ;
+    skosplus:medianPerceivedProbability 0.15 .
+
+skosplus:perceptions_likely a owl:ObjectProperty ;
+    rdfs:label "Likely"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skosplus:perceptionBand ;
+    skosplus:medianPerceivedProbability 0.7 .
+
+skosplus:perceptions_little_chance a owl:ObjectProperty ;
+    rdfs:label "Little Chance"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skosplus:perceptionBand ;
+    skosplus:medianPerceivedProbability 0.15 .
+
+skosplus:perceptions_probably a owl:ObjectProperty ;
+    rdfs:label "Probably"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skosplus:perceptionBand ;
+    skosplus:medianPerceivedProbability 0.75 .
+
+skosplus:perceptions_probably_not a owl:ObjectProperty ;
+    rdfs:label "Probably Not"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skosplus:perceptionBand ;
+    skosplus:medianPerceivedProbability 0.265 .
+
+skosplus:perceptions_unlikely a owl:ObjectProperty ;
+    rdfs:label "Unlikely"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skosplus:perceptionBand ;
+    skosplus:medianPerceivedProbability 0.2 .
+
+skosplus:perceptions_we_believe a owl:ObjectProperty ;
+    rdfs:label "We Believe"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skosplus:perceptionBand ;
+    skosplus:medianPerceivedProbability 0.7 .
+
+skosplus:relatedMatchModerate a owl:ObjectProperty ;
+    rdfs:label "relatedMatch moderate (7-star level 3)"@en ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skos:relatedMatch,
+        skosplus:perceptions_better_than_even ;
+    skosplus:degreeOfConnection 0.5627416864987679 ;
+    skosplus:starLevel 3 .
+
+skosplus:relatedMatchStrong a owl:ObjectProperty ;
+    rdfs:label "relatedMatch strong (7-star level 4)"@en ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skos:relatedMatch,
+        skosplus:perceptions_probable ;
+    skosplus:degreeOfConnection 0.7310585786300049 ;
+    skosplus:starLevel 4 .
+
+skosplus:relatedMatchVeryStrong a owl:ObjectProperty ;
+    rdfs:label "relatedMatch very strong (7-star level 5)"@en ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skos:relatedMatch,
+        skosplus:perceptions_very_good_chance ;
+    skosplus:degreeOfConnection 0.8516629019405073 ;
+    skosplus:starLevel 5 .
+
+skosplus:relatedMatchVeryWeak a owl:ObjectProperty ;
+    rdfs:label "relatedMatch very weak (7-star level 1)"@en ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skos:relatedMatch,
+        skosplus:perceptions_we_doubt ;
+    skosplus:degreeOfConnection 0.0 ;
+    skosplus:starLevel 1 .
+
+skosplus:relatedMatchWeak a owl:ObjectProperty ;
+    rdfs:label "relatedMatch weak (7-star level 2)"@en ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skos:relatedMatch,
+        skosplus:perceptions_about_even ;
+    skosplus:degreeOfConnection 0.32783654048853833 ;
+    skosplus:starLevel 2 .
+
+skosplus:starLevel a owl:AnnotationProperty ;
+    rdfs:label "7-star level"@en ;
+    rdfs:comment "Discrete 7-star mapping level (1..7) used by the SKOS-Plus extension."@en .
+
+skosplus:perceptions_about_even a owl:ObjectProperty ;
+    rdfs:label "About Even"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skosplus:perceptionBand ;
+    skosplus:medianPerceivedProbability 0.5 .
+
+skosplus:perceptions_almost_certainly a owl:ObjectProperty ;
+    rdfs:label "Almost Certainly"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skosplus:perceptionBand ;
+    skosplus:medianPerceivedProbability 0.95 .
+
+skosplus:perceptions_better_than_even a owl:ObjectProperty ;
+    rdfs:label "Better Than Even"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skosplus:perceptionBand ;
+    skosplus:medianPerceivedProbability 0.6 .
+
+skosplus:perceptions_highly_likely a owl:ObjectProperty ;
+    rdfs:label "Highly Likely"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skosplus:perceptionBand ;
+    skosplus:medianPerceivedProbability 0.9 .
+
+skosplus:perceptions_probable a owl:ObjectProperty ;
+    rdfs:label "Probable"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skosplus:perceptionBand ;
+    skosplus:medianPerceivedProbability 0.7 .
+
+skosplus:perceptions_very_good_chance a owl:ObjectProperty ;
+    rdfs:label "Very Good Chance"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skosplus:perceptionBand ;
+    skosplus:medianPerceivedProbability 0.8 .
+
+skosplus:perceptions_we_doubt a owl:ObjectProperty ;
+    rdfs:label "We Doubt"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skosplus:perceptionBand ;
+    skosplus:medianPerceivedProbability 0.25 .
+
+skos:relatedMatch a owl:ObjectProperty ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept .
+
+skosplus:perceptionBand a owl:ObjectProperty ;
+    rdfs:label "perception band"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:comment "Root for perception-phrase bands derived from the zonination/perceptions dataset."@en ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept .
+
+skos:Concept a owl:Class .
+
