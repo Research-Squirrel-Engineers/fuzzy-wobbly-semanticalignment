@@ -1,8 +1,8 @@
-star,relation_uri,label,degree_of_connection,k,perception_phrase
-1,https://w3id.org/skos-plus/relatedMatchVeryWeak,relatedMatch very weak (7-star level 1),0.0,2.0,We Doubt
-2,https://w3id.org/skos-plus/relatedMatchWeak,relatedMatch weak (7-star level 2),0.327837,2.0,About Even
-3,https://w3id.org/skos-plus/relatedMatchModerate,relatedMatch moderate (7-star level 3),0.562742,2.0,Better Than Even
-4,https://w3id.org/skos-plus/relatedMatchStrong,relatedMatch strong (7-star level 4),0.731059,2.0,Probable
-5,https://w3id.org/skos-plus/relatedMatchVeryStrong,relatedMatch very strong (7-star level 5),0.851663,2.0,Very Good Chance
-6,http://www.w3.org/2004/02/skos/core#closeMatch,SKOS closeMatch (7-star level 6),0.93808,2.0,Highly Likely
-7,http://www.w3.org/2004/02/skos/core#exactMatch,SKOS exactMatch (7-star level 7),1.0,2.0,Almost Certainly
+star,relation_uri,label,degree_of_connection,k,perception_phrase,perception_median
+1,https://w3id.org/skos-plus/relatedMatchVeryWeak,relatedMatch very weak (7-star level 1),0.0,2.0,We Doubt,0.25
+2,https://w3id.org/skos-plus/relatedMatchWeak,relatedMatch weak (7-star level 2),0.327837,2.0,About Even,0.5
+3,https://w3id.org/skos-plus/relatedMatchModerate,relatedMatch moderate (7-star level 3),0.562742,2.0,Better Than Even,0.6
+4,https://w3id.org/skos-plus/relatedMatchStrong,relatedMatch strong (7-star level 4),0.731059,2.0,Probable,0.7
+5,https://w3id.org/skos-plus/relatedMatchVeryStrong,relatedMatch very strong (7-star level 5),0.851663,2.0,Very Good Chance,0.8
+6,http://www.w3.org/2004/02/skos/core#closeMatch,SKOS closeMatch (7-star level 6),0.93808,2.0,Highly Likely,0.9
+7,http://www.w3.org/2004/02/skos/core#exactMatch,SKOS exactMatch (7-star level 7),1.0,2.0,Almost Certainly,0.95

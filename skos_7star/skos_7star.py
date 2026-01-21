@@ -7,19 +7,29 @@ SKOS 7-Star Mapping + Perceptions-of-Probability mapping (SKOS-Plus)
 - builds: an RDF graph (rdflib) with ONLY property hierarchies (no individuals):
     * 5 subproperties of skos:relatedMatch (stars 1..5) as skosplus:* object properties
     * skos:closeMatch (star 6) and skos:exactMatch (star 7) kept as SKOS object properties
-    * a separate "perception band" hierarchy as object properties:
-        skosplus:perceptionBand
-          └─ skosplus:perceptions_<phrase_slug>  (for ALL phrases found in probly.csv)
-    * star relations are connected to BOTH:
-        - the SKOS mapping relation (relatedMatch/closeMatch/exactMatch)
-        - the selected skosplus:perceptions_* band (as additional parent)
-    * metadata is provided as ANNOTATION properties (avoids OWL2 punning / Individuals in Protégé):
-        - skosplus:starLevel                   (annotation)
-        - skosplus:degreeOfConnection          (annotation)
-        - skosplus:medianPerceivedProbability  (annotation)
     * introduces skos:Concept as a class (TBox only; no individuals)
     * sets rdfs:domain/rdfs:range for mapping-related properties to skos:Concept
-- writes:
+
+IMPORTANT CHANGE (for merge consistency)
+---------------------------------------
+The previous version created an additional object-property hierarchy:
+    skosplus:perceptionBand
+        └─ skosplus:perceptions_<phrase>
+
+This caused Protégé to show a second "ordering" of properties in the merged ontology.
+
+To keep the explanatory "perception band" idea WITHOUT polluting the object-property tree:
+- skosplus:perceptionBand is now an owl:AnnotationProperty (not an ObjectProperty)
+- No rdfs:subPropertyOf links are created between mapping relations and perception phrase properties
+- The internal/explanatory link is kept as an annotation on each star relation:
+    skosplus:perceptionBand "We Doubt"@en
+(or whichever phrase is used for that star)
+
+This keeps:
+- the merged ontology clean (SKOS-first hierarchy)
+- the 7-star logic documented in the same TTL for working-paper explanation
+
+- writes (FILENAMES UNCHANGED):
     * skos_7star_mapping.ttl      (Turtle)
     * skos_7star_degrees.csv      (table)
     * skos_7star_degree_plot.jpg  (300 DPI line chart)
@@ -28,9 +38,6 @@ Prefix/URI rules implemented
 ----------------------------
 - Only one project prefix is used for custom terms:
     @prefix skosplus: <https://w3id.org/skos-plus/> .
-
-- All perceptions-derived properties use:
-    skosplus:perceptions_<...>
 
 Source
 ------
@@ -205,11 +212,6 @@ def find_phrase_value(medians: pd.DataFrame, phrase: str) -> float | None:
     return float(hit.iloc[0])
 
 
-def _slug_phrase(phrase: str) -> str:
-    """Stable localname suffix for phrases."""
-    return phrase.strip().lower().replace(" ", "_").replace("-", "_")
-
-
 def _choose_phrase_for_star(
     medians: pd.DataFrame, phrase: str | None, phrase_alt: str | None
 ) -> tuple[str | None, float | None]:
@@ -249,106 +251,47 @@ def build_rdf(
     # --- Classes (TBox only; no individuals) ---
     g.add((SKOS.Concept, RDF.type, OWL.Class))
 
+    # --- Ensure SKOS match properties are treated as object properties in this ontology view ---
+    for p in (SKOS.relatedMatch, SKOS.closeMatch, SKOS.exactMatch):
+        g.add((p, RDF.type, OWL.ObjectProperty))
+        g.add((p, RDFS.domain, SKOS.Concept))
+        g.add((p, RDFS.range, SKOS.Concept))
+
     # --- Annotation properties (avoid OWL2 punning/Individuals in Protégé) ---
     DEG = SKOSPLUS.degreeOfConnection
     STAR = SKOSPLUS.starLevel
     MED = SKOSPLUS.medianPerceivedProbability
+    PBAND = SKOSPLUS.perceptionBand  # NOW: annotation property
 
-    g.add((DEG, RDF.type, OWL.AnnotationProperty))
-    g.add((DEG, RDFS.label, Literal("degree of connection (0–1)", lang="en")))
-    g.add(
+    for ap, label, comment in [
         (
             DEG,
-            RDFS.comment,
-            Literal(
-                "Numeric degree of connection for 7-star mapping relations; "
-                "computed via a normalised saturating exponential function.",
-                lang="en",
-            ),
-        )
-    )
-
-    g.add((STAR, RDF.type, OWL.AnnotationProperty))
-    g.add((STAR, RDFS.label, Literal("7-star level", lang="en")))
-    g.add(
+            "degree of connection (0–1)",
+            "Numeric degree of connection for 7-star mapping relations; computed via a normalised saturating exponential function.",
+        ),
         (
             STAR,
-            RDFS.comment,
-            Literal(
-                "Discrete 7-star mapping level (1..7) used by the SKOS-Plus extension.",
-                lang="en",
-            ),
-        )
-    )
-
-    g.add((MED, RDF.type, OWL.AnnotationProperty))
-    g.add((MED, RDFS.label, Literal("median perceived probability", lang="en")))
-    g.add(
+            "7-star level",
+            "Discrete 7-star mapping level (1..7) used by the SKOS-Plus extension.",
+        ),
         (
             MED,
-            RDFS.comment,
-            Literal(
-                "Median perceived probability for a perceptions phrase (derived from zonination/perceptions).",
-                lang="en",
-            ),
-        )
-    )
-
-    # --- Perception band hierarchy (object properties) ---
-    perception_band = SKOSPLUS.perceptionBand
-    g.add((perception_band, RDF.type, OWL.ObjectProperty))
-    g.add((perception_band, RDFS.label, Literal("perception band", lang="en")))
-    g.add(
+            "median perceived probability",
+            "Median perceived probability for a perceptions phrase (derived from zonination/perceptions).",
+        ),
         (
-            perception_band,
-            RDFS.comment,
-            Literal(
-                "Root for perception-phrase bands derived from the zonination/perceptions dataset.",
-                lang="en",
-            ),
-        )
-    )
-    g.add((perception_band, DCTERMS.source, Literal(PERCEPTIONS_REPO)))
+            PBAND,
+            "perception band",
+            "Internal explanatory link to a perceptions phrase/band used to justify a 7-star level (annotation only; not part of the object-property hierarchy).",
+        ),
+    ]:
+        g.add((ap, RDF.type, OWL.AnnotationProperty))
+        g.add((ap, RDFS.label, Literal(label, lang="en")))
+        g.add((ap, RDFS.comment, Literal(comment, lang="en")))
 
-    # Domain/Range for perception band (keeps the model consistent in tools/reasoners)
-    g.add((perception_band, RDFS.domain, SKOS.Concept))
-    g.add((perception_band, RDFS.range, SKOS.Concept))
+    g.add((PBAND, DCTERMS.source, Literal(PERCEPTIONS_REPO)))
 
-    # --- Ensure SKOS match properties are treated as object properties in this ontology view ---
-    g.add((SKOS.relatedMatch, RDF.type, OWL.ObjectProperty))
-    g.add((SKOS.closeMatch, RDF.type, OWL.ObjectProperty))
-    g.add((SKOS.exactMatch, RDF.type, OWL.ObjectProperty))
-
-    # Domain/Range for SKOS match properties
-    for p in (SKOS.relatedMatch, SKOS.closeMatch, SKOS.exactMatch):
-        g.add((p, RDFS.domain, SKOS.Concept))
-        g.add((p, RDFS.range, SKOS.Concept))
-
-    # --- Create perception phrase properties for ALL phrases in the CSV ---
-    phrase_rows = medians.copy()
-    phrase_rows["slug"] = phrase_rows["phrase"].apply(_slug_phrase)
-
-    phrase_to_prop: dict[str, object] = {}
-
-    for _, row in phrase_rows.iterrows():
-        phrase = str(row["phrase"])
-        slug = str(row["slug"])
-        median_val = float(row["median_probability"])
-
-        p_uri = SKOSPLUS[f"perceptions_{slug}"]
-        phrase_to_prop[phrase.casefold()] = p_uri
-
-        g.add((p_uri, RDF.type, OWL.ObjectProperty))
-        g.add((p_uri, RDFS.subPropertyOf, perception_band))
-        g.add((p_uri, RDFS.label, Literal(phrase, lang="en")))
-        g.add((p_uri, DCTERMS.source, Literal(PERCEPTIONS_REPO)))
-        g.add((p_uri, MED, Literal(median_val, datatype=XSD.decimal)))
-
-        # Domain/Range for the perception phrase properties
-        g.add((p_uri, RDFS.domain, SKOS.Concept))
-        g.add((p_uri, RDFS.range, SKOS.Concept))
-
-    # --- Build 7-star relations and connect to both hierarchies ---
+    # --- Build 7-star relations ---
     defs = mapping_definitions()
     degrees_rows: List[Dict[str, object]] = []
 
@@ -362,50 +305,34 @@ def build_rdf(
             medians, phrase, phrase_alt
         )
 
-        # Determine the SKOS mapping relation URI
+        # Determine the mapping relation URI
         if star <= 5:
             rel_uri = SKOSPLUS[rel_local]
             g.add((rel_uri, RDF.type, OWL.ObjectProperty))
             g.add((rel_uri, RDFS.subPropertyOf, SKOS.relatedMatch))
             g.add((rel_uri, RDFS.label, Literal(label, lang="en")))
-
-            # Domain/Range for custom relatedMatch subproperties
             g.add((rel_uri, RDFS.domain, SKOS.Concept))
             g.add((rel_uri, RDFS.range, SKOS.Concept))
 
         elif star == 6:
             rel_uri = SKOS.closeMatch
             g.add((rel_uri, RDFS.label, Literal(label, lang="en")))
-            # domain/range already set above
 
         else:  # star == 7
             rel_uri = SKOS.exactMatch
             g.add((rel_uri, RDFS.label, Literal(label, lang="en")))
-            # domain/range already set above
 
         # Add star + degree as annotations to the relation
         d = degree_of_connection(star, k)
         g.add((rel_uri, DEG, Literal(d, datatype=XSD.decimal)))
         g.add((rel_uri, STAR, Literal(star, datatype=XSD.integer)))
 
-        # Connect the relation to the chosen perception phrase property (as additional parent)
+        # Internal explanatory link (annotation only)
         if chosen_phrase:
-            p_parent = phrase_to_prop.get(chosen_phrase.casefold())
-            if p_parent is None:
-                # Fallback: create the property if it was not in medians (rare)
-                slug = _slug_phrase(chosen_phrase)
-                p_parent = SKOSPLUS[f"perceptions_{slug}"]
-                g.add((p_parent, RDF.type, OWL.ObjectProperty))
-                g.add((p_parent, RDFS.subPropertyOf, perception_band))
-                g.add((p_parent, RDFS.label, Literal(chosen_phrase, lang="en")))
-                g.add((p_parent, DCTERMS.source, Literal(PERCEPTIONS_REPO)))
-                if chosen_median is not None:
-                    g.add((p_parent, MED, Literal(chosen_median, datatype=XSD.decimal)))
-
-                g.add((p_parent, RDFS.domain, SKOS.Concept))
-                g.add((p_parent, RDFS.range, SKOS.Concept))
-
-            g.add((rel_uri, RDFS.subPropertyOf, p_parent))
+            g.add((rel_uri, PBAND, Literal(chosen_phrase, lang="en")))
+        if chosen_median is not None:
+            # optional: keep the median as annotation for documentation
+            g.add((rel_uri, MED, Literal(float(chosen_median), datatype=XSD.decimal)))
 
         degrees_rows.append(
             {
@@ -415,6 +342,9 @@ def build_rdf(
                 "degree_of_connection": round(d, 6),
                 "k": k,
                 "perception_phrase": chosen_phrase,
+                "perception_median": (
+                    None if chosen_median is None else round(float(chosen_median), 6)
+                ),
             }
         )
 
