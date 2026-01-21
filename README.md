@@ -1,4 +1,6 @@
-# fuzzy-wobbly-semantic-alignment
+# Gradual Semantic Alignment for SKOS (GSAS)
+
+GSAS - A numeric and perception-aware approach to SKOS mapping relations
 
 This repository provides a **reproducible, ontology-driven framework** for modelling
 *graded semantic alignment* in SKOS using **numeric degrees of connection**.
