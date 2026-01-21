@@ -15,11 +15,11 @@ skosplus:iqrPerceivedProbability a owl:AnnotationProperty ;
 
 skosplus:lowerWhiskerPerceivedProbability a owl:AnnotationProperty ;
     rdfs:label "lower whisker perceived probability"@en ;
-    rdfs:comment "Lower Tukey whisker (Q1-1.5*IQR, clipped to observed min)."@en .
+    rdfs:comment "Lower Tukey whisker (clipped to observed min)."@en .
 
 skosplus:medianPerceivedProbability a owl:AnnotationProperty ;
     rdfs:label "median perceived probability"@en ;
-    rdfs:comment "Empirical median (0..1) from zonination/perceptions."@en .
+    rdfs:comment "Empirical median (0..1) derived from zonination/perceptions."@en .
 
 skosplus:perceptions_about_even a owl:ObjectProperty ;
     rdfs:label "About Even"@en ;
@@ -261,15 +261,15 @@ skosplus:perceptions_we_doubt a owl:ObjectProperty ;
 
 skosplus:q1PerceivedProbability a owl:AnnotationProperty ;
     rdfs:label "Q1 perceived probability"@en ;
-    rdfs:comment "First quartile (0..1) from zonination/perceptions."@en .
+    rdfs:comment "First quartile (0..1)."@en .
 
 skosplus:q3PerceivedProbability a owl:AnnotationProperty ;
     rdfs:label "Q3 perceived probability"@en ;
-    rdfs:comment "Third quartile (0..1) from zonination/perceptions."@en .
+    rdfs:comment "Third quartile (0..1)."@en .
 
 skosplus:upperWhiskerPerceivedProbability a owl:AnnotationProperty ;
     rdfs:label "upper whisker perceived probability"@en ;
-    rdfs:comment "Upper Tukey whisker (Q3+1.5*IQR, clipped to observed max)."@en .
+    rdfs:comment "Upper Tukey whisker (clipped to observed max)."@en .
 
 skos:exactMatch a owl:ObjectProperty ;
     rdfs:domain skos:Concept ;
