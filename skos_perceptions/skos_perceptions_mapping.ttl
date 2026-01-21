@@ -1,0 +1,287 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix skosplus: <https://w3id.org/skos-plus/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+skosplus:degreeOfConnection a owl:AnnotationProperty ;
+    rdfs:label "degree of connection (0–1)"@en ;
+    rdfs:comment "Numeric degree; for perceptions this equals the empirical median."@en .
+
+skosplus:iqrPerceivedProbability a owl:AnnotationProperty ;
+    rdfs:label "IQR perceived probability"@en ;
+    rdfs:comment "Interquartile range (Q3-Q1)."@en .
+
+skosplus:lowerWhiskerPerceivedProbability a owl:AnnotationProperty ;
+    rdfs:label "lower whisker perceived probability"@en ;
+    rdfs:comment "Lower Tukey whisker (Q1-1.5*IQR, clipped to observed min)."@en .
+
+skosplus:medianPerceivedProbability a owl:AnnotationProperty ;
+    rdfs:label "median perceived probability"@en ;
+    rdfs:comment "Empirical median (0..1) from zonination/perceptions."@en .
+
+skosplus:perceptions_about_even a owl:ObjectProperty ;
+    rdfs:label "About Even"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skos:closeMatch ;
+    skosplus:degreeOfConnection 0.5 ;
+    skosplus:iqrPerceivedProbability 0.0 ;
+    skosplus:lowerWhiskerPerceivedProbability 0.5 ;
+    skosplus:medianPerceivedProbability 0.5 ;
+    skosplus:q1PerceivedProbability 0.5 ;
+    skosplus:q3PerceivedProbability 0.5 ;
+    skosplus:upperWhiskerPerceivedProbability 0.5 .
+
+skosplus:perceptions_almost_certainly a owl:ObjectProperty ;
+    rdfs:label "Almost Certainly"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skos:exactMatch ;
+    skosplus:degreeOfConnection 0.95 ;
+    skosplus:iqrPerceivedProbability 0.07750000000000001 ;
+    skosplus:lowerWhiskerPerceivedProbability 0.78375 ;
+    skosplus:medianPerceivedProbability 0.95 ;
+    skosplus:q1PerceivedProbability 0.9 ;
+    skosplus:q3PerceivedProbability 0.9775 ;
+    skosplus:upperWhiskerPerceivedProbability 0.99 .
+
+skosplus:perceptions_almost_no_chance a owl:ObjectProperty ;
+    rdfs:label "Almost No Chance"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skos:relatedMatch ;
+    skosplus:degreeOfConnection 0.02 ;
+    skosplus:iqrPerceivedProbability 0.04 ;
+    skosplus:lowerWhiskerPerceivedProbability 0.0005 ;
+    skosplus:medianPerceivedProbability 0.02 ;
+    skosplus:q1PerceivedProbability 0.01 ;
+    skosplus:q3PerceivedProbability 0.05 ;
+    skosplus:upperWhiskerPerceivedProbability 0.11 .
+
+skosplus:perceptions_better_than_even a owl:ObjectProperty ;
+    rdfs:label "Better Than Even"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skos:closeMatch ;
+    skosplus:degreeOfConnection 0.6 ;
+    skosplus:iqrPerceivedProbability 0.04999999999999993 ;
+    skosplus:lowerWhiskerPerceivedProbability 0.47500000000000014 ;
+    skosplus:medianPerceivedProbability 0.6 ;
+    skosplus:q1PerceivedProbability 0.55 ;
+    skosplus:q3PerceivedProbability 0.6 ;
+    skosplus:upperWhiskerPerceivedProbability 0.6749999999999998 .
+
+skosplus:perceptions_chances_are_slight a owl:ObjectProperty ;
+    rdfs:label "Chances Are Slight"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skos:relatedMatch ;
+    skosplus:degreeOfConnection 0.1 ;
+    skosplus:iqrPerceivedProbability 0.04999999999999999 ;
+    skosplus:lowerWhiskerPerceivedProbability 0.05 ;
+    skosplus:medianPerceivedProbability 0.1 ;
+    skosplus:q1PerceivedProbability 0.1 ;
+    skosplus:q3PerceivedProbability 0.15 ;
+    skosplus:upperWhiskerPerceivedProbability 0.22499999999999998 .
+
+skosplus:perceptions_highly_likely a owl:ObjectProperty ;
+    rdfs:label "Highly Likely"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skos:closeMatch ;
+    skosplus:degreeOfConnection 0.9 ;
+    skosplus:iqrPerceivedProbability 0.10749999999999993 ;
+    skosplus:lowerWhiskerPerceivedProbability 0.6812500000000001 ;
+    skosplus:medianPerceivedProbability 0.9 ;
+    skosplus:q1PerceivedProbability 0.8425 ;
+    skosplus:q3PerceivedProbability 0.95 ;
+    skosplus:upperWhiskerPerceivedProbability 0.99 .
+
+skosplus:perceptions_highly_unlikely a owl:ObjectProperty ;
+    rdfs:label "Highly Unlikely"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skos:relatedMatch ;
+    skosplus:degreeOfConnection 0.05 ;
+    skosplus:iqrPerceivedProbability 0.05 ;
+    skosplus:lowerWhiskerPerceivedProbability 0.02 ;
+    skosplus:medianPerceivedProbability 0.05 ;
+    skosplus:q1PerceivedProbability 0.05 ;
+    skosplus:q3PerceivedProbability 0.1 ;
+    skosplus:upperWhiskerPerceivedProbability 0.17500000000000002 .
+
+skosplus:perceptions_improbable a owl:ObjectProperty ;
+    rdfs:label "Improbable"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skos:relatedMatch ;
+    skosplus:degreeOfConnection 0.15 ;
+    skosplus:iqrPerceivedProbability 0.20999999999999996 ;
+    skosplus:lowerWhiskerPerceivedProbability 0.0 ;
+    skosplus:medianPerceivedProbability 0.15 ;
+    skosplus:q1PerceivedProbability 0.07 ;
+    skosplus:q3PerceivedProbability 0.27999999999999997 ;
+    skosplus:upperWhiskerPerceivedProbability 0.5 .
+
+skosplus:perceptions_likely a owl:ObjectProperty ;
+    rdfs:label "Likely"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skos:closeMatch ;
+    skosplus:degreeOfConnection 0.7 ;
+    skosplus:iqrPerceivedProbability 0.09999999999999998 ;
+    skosplus:lowerWhiskerPerceivedProbability 0.5 ;
+    skosplus:medianPerceivedProbability 0.7 ;
+    skosplus:q1PerceivedProbability 0.65 ;
+    skosplus:q3PerceivedProbability 0.75 ;
+    skosplus:upperWhiskerPerceivedProbability 0.8999999999999999 .
+
+skosplus:perceptions_little_chance a owl:ObjectProperty ;
+    rdfs:label "Little Chance"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skos:relatedMatch ;
+    skosplus:degreeOfConnection 0.15 ;
+    skosplus:iqrPerceivedProbability 0.1 ;
+    skosplus:lowerWhiskerPerceivedProbability 0.02 ;
+    skosplus:medianPerceivedProbability 0.15 ;
+    skosplus:q1PerceivedProbability 0.1 ;
+    skosplus:q3PerceivedProbability 0.2 ;
+    skosplus:upperWhiskerPerceivedProbability 0.35000000000000003 .
+
+skosplus:perceptions_probable a owl:ObjectProperty ;
+    rdfs:label "Probable"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skos:closeMatch ;
+    skosplus:degreeOfConnection 0.7 ;
+    skosplus:iqrPerceivedProbability 0.13750000000000007 ;
+    skosplus:lowerWhiskerPerceivedProbability 0.5 ;
+    skosplus:medianPerceivedProbability 0.7 ;
+    skosplus:q1PerceivedProbability 0.65 ;
+    skosplus:q3PerceivedProbability 0.7875000000000001 ;
+    skosplus:upperWhiskerPerceivedProbability 0.9 .
+
+skosplus:perceptions_probably a owl:ObjectProperty ;
+    rdfs:label "Probably"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skos:closeMatch ;
+    skosplus:degreeOfConnection 0.75 ;
+    skosplus:iqrPerceivedProbability 0.15000000000000002 ;
+    skosplus:lowerWhiskerPerceivedProbability 0.45 ;
+    skosplus:medianPerceivedProbability 0.75 ;
+    skosplus:q1PerceivedProbability 0.65 ;
+    skosplus:q3PerceivedProbability 0.8 ;
+    skosplus:upperWhiskerPerceivedProbability 0.9 .
+
+skosplus:perceptions_probably_not a owl:ObjectProperty ;
+    rdfs:label "Probably Not"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skos:relatedMatch ;
+    skosplus:degreeOfConnection 0.265 ;
+    skosplus:iqrPerceivedProbability 0.1875 ;
+    skosplus:lowerWhiskerPerceivedProbability 0.1 ;
+    skosplus:medianPerceivedProbability 0.265 ;
+    skosplus:q1PerceivedProbability 0.2 ;
+    skosplus:q3PerceivedProbability 0.3875 ;
+    skosplus:upperWhiskerPerceivedProbability 0.66875 .
+
+skosplus:perceptions_unlikely a owl:ObjectProperty ;
+    rdfs:label "Unlikely"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skos:relatedMatch ;
+    skosplus:degreeOfConnection 0.2 ;
+    skosplus:iqrPerceivedProbability 0.18749999999999997 ;
+    skosplus:lowerWhiskerPerceivedProbability 0.02 ;
+    skosplus:medianPerceivedProbability 0.2 ;
+    skosplus:q1PerceivedProbability 0.1 ;
+    skosplus:q3PerceivedProbability 0.2875 ;
+    skosplus:upperWhiskerPerceivedProbability 0.36 .
+
+skosplus:perceptions_very_good_chance a owl:ObjectProperty ;
+    rdfs:label "Very Good Chance"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skos:closeMatch ;
+    skosplus:degreeOfConnection 0.8 ;
+    skosplus:iqrPerceivedProbability 0.09999999999999998 ;
+    skosplus:lowerWhiskerPerceivedProbability 0.65 ;
+    skosplus:medianPerceivedProbability 0.8 ;
+    skosplus:q1PerceivedProbability 0.75 ;
+    skosplus:q3PerceivedProbability 0.85 ;
+    skosplus:upperWhiskerPerceivedProbability 0.91 .
+
+skosplus:perceptions_we_believe a owl:ObjectProperty ;
+    rdfs:label "We Believe"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skos:closeMatch ;
+    skosplus:degreeOfConnection 0.7 ;
+    skosplus:iqrPerceivedProbability 0.20000000000000007 ;
+    skosplus:lowerWhiskerPerceivedProbability 0.2999999999999999 ;
+    skosplus:medianPerceivedProbability 0.7 ;
+    skosplus:q1PerceivedProbability 0.6 ;
+    skosplus:q3PerceivedProbability 0.8 ;
+    skosplus:upperWhiskerPerceivedProbability 1.0 .
+
+skosplus:perceptions_we_doubt a owl:ObjectProperty ;
+    rdfs:label "We Doubt"@en ;
+    dct:source "https://github.com/zonination/perceptions" ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    rdfs:subPropertyOf skos:relatedMatch ;
+    skosplus:degreeOfConnection 0.25 ;
+    skosplus:iqrPerceivedProbability 0.18000000000000002 ;
+    skosplus:lowerWhiskerPerceivedProbability 0.01 ;
+    skosplus:medianPerceivedProbability 0.25 ;
+    skosplus:q1PerceivedProbability 0.15 ;
+    skosplus:q3PerceivedProbability 0.33 ;
+    skosplus:upperWhiskerPerceivedProbability 0.6000000000000001 .
+
+skosplus:q1PerceivedProbability a owl:AnnotationProperty ;
+    rdfs:label "Q1 perceived probability"@en ;
+    rdfs:comment "First quartile (0..1) from zonination/perceptions."@en .
+
+skosplus:q3PerceivedProbability a owl:AnnotationProperty ;
+    rdfs:label "Q3 perceived probability"@en ;
+    rdfs:comment "Third quartile (0..1) from zonination/perceptions."@en .
+
+skosplus:upperWhiskerPerceivedProbability a owl:AnnotationProperty ;
+    rdfs:label "upper whisker perceived probability"@en ;
+    rdfs:comment "Upper Tukey whisker (Q3+1.5*IQR, clipped to observed max)."@en .
+
+skos:exactMatch a owl:ObjectProperty ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept .
+
+skos:closeMatch a owl:ObjectProperty ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept .
+
+skos:relatedMatch a owl:ObjectProperty ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept .
+
+skos:Concept a owl:Class .
+

@@ -1,0 +1,18 @@
+phrase,slug,degree_of_connection,median,q1,q3,iqr,lower_whisker,upper_whisker,skos_parent,property_uri
+Almost No Chance,perceptions_almost_no_chance,0.02,0.02,0.01,0.05,0.04,0.0005,0.11,http://www.w3.org/2004/02/skos/core#relatedMatch,https://w3id.org/skos-plus/perceptions_almost_no_chance
+Highly Unlikely,perceptions_highly_unlikely,0.05,0.05,0.05,0.1,0.05,0.02,0.17500000000000002,http://www.w3.org/2004/02/skos/core#relatedMatch,https://w3id.org/skos-plus/perceptions_highly_unlikely
+Chances Are Slight,perceptions_chances_are_slight,0.1,0.1,0.1,0.15,0.04999999999999999,0.05,0.22499999999999998,http://www.w3.org/2004/02/skos/core#relatedMatch,https://w3id.org/skos-plus/perceptions_chances_are_slight
+Little Chance,perceptions_little_chance,0.15,0.15,0.1,0.2,0.1,0.02,0.35000000000000003,http://www.w3.org/2004/02/skos/core#relatedMatch,https://w3id.org/skos-plus/perceptions_little_chance
+Improbable,perceptions_improbable,0.15,0.15,0.07,0.27999999999999997,0.20999999999999996,0.0,0.5,http://www.w3.org/2004/02/skos/core#relatedMatch,https://w3id.org/skos-plus/perceptions_improbable
+Unlikely,perceptions_unlikely,0.2,0.2,0.1,0.2875,0.18749999999999997,0.02,0.36,http://www.w3.org/2004/02/skos/core#relatedMatch,https://w3id.org/skos-plus/perceptions_unlikely
+We Doubt,perceptions_we_doubt,0.25,0.25,0.15,0.33,0.18000000000000002,0.01,0.6000000000000001,http://www.w3.org/2004/02/skos/core#relatedMatch,https://w3id.org/skos-plus/perceptions_we_doubt
+Probably Not,perceptions_probably_not,0.265,0.265,0.2,0.3875,0.1875,0.1,0.66875,http://www.w3.org/2004/02/skos/core#relatedMatch,https://w3id.org/skos-plus/perceptions_probably_not
+About Even,perceptions_about_even,0.5,0.5,0.5,0.5,0.0,0.5,0.5,http://www.w3.org/2004/02/skos/core#closeMatch,https://w3id.org/skos-plus/perceptions_about_even
+Better Than Even,perceptions_better_than_even,0.6,0.6,0.55,0.6,0.04999999999999993,0.47500000000000014,0.6749999999999998,http://www.w3.org/2004/02/skos/core#closeMatch,https://w3id.org/skos-plus/perceptions_better_than_even
+Probable,perceptions_probable,0.7,0.7,0.65,0.7875000000000001,0.13750000000000007,0.5,0.9,http://www.w3.org/2004/02/skos/core#closeMatch,https://w3id.org/skos-plus/perceptions_probable
+We Believe,perceptions_we_believe,0.7,0.7,0.6,0.8,0.20000000000000007,0.2999999999999999,1.0,http://www.w3.org/2004/02/skos/core#closeMatch,https://w3id.org/skos-plus/perceptions_we_believe
+Likely,perceptions_likely,0.7,0.7,0.65,0.75,0.09999999999999998,0.5,0.8999999999999999,http://www.w3.org/2004/02/skos/core#closeMatch,https://w3id.org/skos-plus/perceptions_likely
+Probably,perceptions_probably,0.75,0.75,0.65,0.8,0.15000000000000002,0.45,0.9,http://www.w3.org/2004/02/skos/core#closeMatch,https://w3id.org/skos-plus/perceptions_probably
+Very Good Chance,perceptions_very_good_chance,0.8,0.8,0.75,0.85,0.09999999999999998,0.65,0.91,http://www.w3.org/2004/02/skos/core#closeMatch,https://w3id.org/skos-plus/perceptions_very_good_chance
+Highly Likely,perceptions_highly_likely,0.9,0.9,0.8425,0.95,0.10749999999999993,0.6812500000000001,0.99,http://www.w3.org/2004/02/skos/core#closeMatch,https://w3id.org/skos-plus/perceptions_highly_likely
+Almost Certainly,perceptions_almost_certainly,0.95,0.95,0.9,0.9775,0.07750000000000001,0.78375,0.99,http://www.w3.org/2004/02/skos/core#exactMatch,https://w3id.org/skos-plus/perceptions_almost_certainly
